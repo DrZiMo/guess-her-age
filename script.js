@@ -3,6 +3,9 @@ const slider = document.querySelector('.slider')
 const currentRoundNum = document.querySelector('.round-number')
 const totalRoundNum = document.querySelector('.total-round')
 const mainImage = document.querySelector('.image')
+const offYears = document.querySelector('.off-years')
+const popup = document.getElementById('popupContainer')
+const popupOkButton = document.getElementById('popupOkButton')
 
 let currentRound = 1
 let numberOfRounds = 10
@@ -23,3 +26,12 @@ const getRandomImage = () => {
 
     mainImage.src = image
 }
+
+function showPopup(guessed, correct) {
+    document.getElementById('guessedAge').innerText = guessed
+    document.getElementById('correctAge').innerText = correct
+    document.getElementById('ageDiff').innerText = Math.abs(guessed - correct)
+    popup.classList.remove('hidden')
+}
+
+popupOkButton.addEventListener('click', () => popup.classList.add('hidden'))

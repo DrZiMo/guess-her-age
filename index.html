@@ -33,6 +33,20 @@
                 box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
                     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
             }
+
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.95);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+            .animate-fadeIn {
+                animation: fadeIn 0.3s ease-out;
+            }
         </style>
     </head>
     <body
@@ -40,7 +54,7 @@
         style="font-family: 'Cal Sans', sans-serif"
     >
         <div
-            class="container lg:w-[400px] flex flex-col items-center gap-4 text-center mt-10"
+            class="container lg:w-[400px] flex flex-col items-center gap-4 text-center mt-5"
         >
             <h1 class="text-2xl font-semibold text-[var(--light-red)]">
                 Qiyaas Da'deeda
@@ -67,12 +81,60 @@
                         class="slider w-[70%] h-2 bg-[var(--darker-blue)] rounded-lg appearance-none cursor-pointer accent-indigo-600 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[var(--light-red)] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md hover:[&::-webkit-slider-thumb]:bg-[var(--dark-red)] focus:outline-none"
                     />
                 </div>
-                <br />
+                <p class="my-2 [word-spacing:6px]">
+                    Off by Ø
+                    <span class="off-years text-[var(--light-red)]">0</span>
+                    years
+                </p>
                 <button
                     class="bg-[var(--light-red)] px-6 py-2 rounded-md hover:bg-[var(--dark-red)] transition text-white cursor-pointer"
                 >
                     Eeg jawaabta
                 </button>
+            </div>
+
+            <!-- Pop up Window -->
+            <div
+                class="pop-up fixed inset-0 bg-black/40 flex justify-center items-center z-50 absolute"
+                id="popupContainer"
+            >
+                <div
+                    class="bg-white rounded-xl shadow-2xl p-6 w-[90%] max-w-md text-center relative animate-fadeIn"
+                >
+                    <div class="mb-4">
+                        <h2 class="text-2xl text-[var(--light-red)] mb-2">
+                            Natiijadaada
+                        </h2>
+                        <p class="text-gray-600 text-base">
+                            Qiyaastaada:
+                            <span
+                                class="text-[var(--light-red)]"
+                                id="guessedAge"
+                                >50</span
+                            >
+                            jir.
+                        </p>
+                        <p class="text-gray-600 text-base mt-2">
+                            Da'da saxda:
+                            <span
+                                class="text-[var(--light-red)]"
+                                id="correctAge"
+                                >45</span
+                            >
+                            jir.
+                        </p>
+                        <p class="mt-4 text-sm text-gray-500">
+                            Farqiga:
+                            <span class="" id="ageDiff">5</span> sano
+                        </p>
+                    </div>
+                    <button
+                        class="mt-4 bg-[var(--light-red)] text-white px-5 py-2 rounded-lg hover:bg-[var(--dark-red)] transition"
+                        id="popupOkButton"
+                    >
+                        Ka sii soco
+                    </button>
+                </div>
             </div>
         </div>
         <script src="script.js"></script>
