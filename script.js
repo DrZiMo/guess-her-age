@@ -72,12 +72,12 @@ function finishGame() {
     let feedback = ''
 
     if (average <= 2) {
-        feedback = '"Aad bay u fiicantay! Si fiican ayaad u qiyaastay 🤩."'
+        feedback = '"Aad baad u fiicantay! Si fiican ayaad u qiyaastay 🤩."'
     } else if (average <= 5) {
         feedback = '"Qiyaas fiican! Waad dhawday 🙂."'
     } else {
         feedback =
-            '"Waxaad isku dayday, laakiin waxay u baahan tahay muraayado 🤓."'
+            '"Waad isku dayday, laakiin waxay u baahan tahay muraayado 🤓."'
     }
 
     document.getElementById('feedbackMessage').innerText = feedback
