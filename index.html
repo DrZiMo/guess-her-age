@@ -141,38 +141,40 @@
 
             <!-- Finish Window -->
             <div
-                class="finished-window hidden bg-white w-full max-w-md mx-auto flex flex-col items-center py-8 px-6 rounded-lg shadow-lg text-center"
+                class="finished-window hidden fixed inset-0 bg-black/40 flex justify-center items-center z-50"
                 id="finishedWindow"
             >
-                <h2 class="text-3xl font-bold text-[var(--light-red)] mb-4">
-                    Ciyaarta Waa Dhammaatay!
-                </h2>
-
-                <p class="text-gray-700 text-base mb-2">
-                    Waxaad dhammaysay
-                    <span class="font-semibold text-gray-900">10</span> wareeg.
-                </p>
-
-                <p class="text-gray-700 text-base mb-2">
-                    Celceliska farqiga ee qiyaastaada wuxuu ahaa:
-                    <span
-                        class="font-bold text-[var(--light-red)]"
-                        id="averageError"
-                        >..</span
-                    >
-                    sano.
-                </p>
-
-                <p class="text-gray-700 text-base mb-6" id="feedbackMessage">
-                    ...
-                </p>
-
-                <button
-                    class="bg-[var(--light-red)] px-6 py-2 rounded-md hover:bg-[var(--dark-red)] transition text-white"
-                    id="restartBtn"
+                <div
+                    class="bg-white rounded-xl shadow-2xl p-6 w-[90%] max-w-md text-center relative animate-fadeIn"
                 >
-                    Ku celi ciyaarta
-                </button>
+                    <h2 class="text-2xl text-[var(--light-red)] mb-2">
+                        Ciyaarta Waa Dhammaatay!
+                    </h2>
+
+                    <p class="text-gray-600 text-base mb-2">
+                        <span class="text-gray-900">10</span>
+                        wareeg.
+                    </p>
+
+                    <p class="text-gray-600 text-base mb-2">
+                        Celceliska farqiga:
+                        <span class="text-[var(--light-red)]" id="averageError"
+                            >..</span
+                        >
+                        sano.
+                    </p>
+
+                    <p class="text-gray-500 text-sm mb-6" id="feedbackMessage">
+                        ...
+                    </p>
+
+                    <button
+                        class="bg-[var(--light-red)] text-white px-5 py-2 rounded-lg hover:bg-[var(--dark-red)] transition cursor-pointer"
+                        id="restartBtn"
+                    >
+                        Ku celi ciyaarta
+                    </button>
+                </div>
             </div>
         </div>
 
