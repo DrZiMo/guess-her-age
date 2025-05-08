@@ -9,6 +9,7 @@ const popup = document.getElementById('popupContainer')
 const popupOkButton = document.getElementById('popupOkButton')
 const resultBtn = document.querySelector('#result-btn')
 const finishedWindow = document.querySelector('.finished-window')
+const averageError = document.querySelector('#averageError')
 
 let currentRound = 1
 let numberOfRounds = 10
@@ -59,12 +60,30 @@ const nextRound = () => {
 const finished = () => {
     box.classList.add('hidden')
     finishedWindow.classList.remove('hidden')
+    averageError.innerHTML = calculateAverageError().toFixed(2)
+
+    const average = (totalError / numberOfRounds).toFixed(1)
+
+    let feedback = ''
+    if (average <= 2) {
+        feedback = 'Aad bay u fiicantay! Si fiican ayaad u qiyaastay 🤩.'
+    } else if (average <= 5) {
+        feedback = 'Qiyaas fiican! Waad dhawday 🙂.'
+    } else {
+        feedback =
+            'Waxaad isku dayday, laakiin waxay u baahan tahay muraayado 🤓.'
+    }
+
+    document.getElementById('feedbackMessage').innerText = feedback
 }
 
 const calculateAverageError = (guessed, correct) => {
-    const absError = Math.abs(guessed - correct)
-    totalError += absError
-    return totalError / currentRound
+    if (guessed !== undefined && correct !== undefined) {
+        const absError = Math.abs(guessed - correct)
+        totalError += absError
+    }
+
+    return totalError / numberOfRounds
 }
 
 resultBtn.addEventListener('click', () => showPopup(slider.value, correctAge))

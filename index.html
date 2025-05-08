@@ -29,7 +29,8 @@
                 --dark-red: #d90429;
             }
 
-            .box, .finished-window {
+            .box,
+            .finished-window {
                 box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
                     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
             }
@@ -139,40 +140,41 @@
             </div>
 
             <!-- Finish Window -->
-           <div
-    class="finished-window hidden bg-white w-full max-w-md mx-auto flex flex-col items-center py-8 px-6 rounded-lg shadow-lg text-center"
-    id="finishedWindow"
->
-    <h2 class="text-3xl font-bold text-[var(--light-red)] mb-4">Ciyaarta Waa Dhammaatay!</h2>
+            <div
+                class="finished-window hidden bg-white w-full max-w-md mx-auto flex flex-col items-center py-8 px-6 rounded-lg shadow-lg text-center"
+                id="finishedWindow"
+            >
+                <h2 class="text-3xl font-bold text-[var(--light-red)] mb-4">
+                    Ciyaarta Waa Dhammaatay!
+                </h2>
 
-    <p class="text-gray-700 text-base mb-2">
-        Waxaad dhammaysay <span class="font-semibold text-gray-900">10 wareeg</span>.
-    </p>
+                <p class="text-gray-700 text-base mb-2">
+                    Waxaad dhammaysay
+                    <span class="font-semibold text-gray-900">10</span> wareeg.
+                </p>
 
-    <p class="text-gray-700 text-base mb-2">
-        Celceliska farqiga ee qiyaastaada wuxuu ahaa:
-        <span class="font-bold text-[var(--light-red)]" id="averageError">4.3</span> sano.
-    </p> 
+                <p class="text-gray-700 text-base mb-2">
+                    Celceliska farqiga ee qiyaastaada wuxuu ahaa:
+                    <span
+                        class="font-bold text-[var(--light-red)]"
+                        id="averageError"
+                        >..</span
+                    >
+                    sano.
+                </p>
 
-    <p class="text-gray-700 text-base mb-6" id="feedbackMessage">
-        Qiyaas fiican! Waxaad si dhow ugu dhowaatay da'da saxda ah.
-    </p>
+                <p class="text-gray-700 text-base mb-6" id="feedbackMessage">
+                    ...
+                </p>
 
-    <div class="w-full flex flex-col sm:flex-row justify-center gap-4">
-        <button
-            class="bg-[var(--light-red)] px-6 py-2 rounded-md hover:bg-[var(--dark-red)] transition text-white"
-            id="restartBtn"
-        >
-            Ku celi ciyaarta
-        </button>
-        <button
-            class="bg-gray-200 px-6 py-2 rounded-md hover:bg-gray-300 transition text-gray-800"
-            id="shareBtn"
-        >
-            La wadaag saaxiib
-        </button>
-    </div>
-</div>
+                <button
+                    class="bg-[var(--light-red)] px-6 py-2 rounded-md hover:bg-[var(--dark-red)] transition text-white"
+                    id="restartBtn"
+                >
+                    Ku celi ciyaarta
+                </button>
+            </div>
+        </div>
 
         <script src="script.js"></script>
         <script src="data.js"></script>
