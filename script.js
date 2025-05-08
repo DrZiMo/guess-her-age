@@ -1,4 +1,4 @@
-// DOM Elements
+// Element selectors
 const box = document.querySelector('.box')
 const age = document.querySelector('.age')
 const slider = document.querySelector('.slider')
@@ -8,82 +8,94 @@ const mainImage = document.querySelector('.image')
 const offYears = document.querySelector('.off-years')
 const popup = document.getElementById('popupContainer')
 const popupOkButton = document.getElementById('popupOkButton')
-const resultBtn = document.getElementById('result-btn')
+const resultBtn = document.querySelector('#result-btn')
 const finishedWindow = document.querySelector('.finished-window')
-const averageError = document.getElementById('averageError')
-const restartBtn = document.getElementById('restartBtn')
+const averageError = document.querySelector('#averageError')
+const restartBtn = document.querySelector('#restartBtn')
+const guessedDisplay = document.getElementById('guessedAge')
+const correctDisplay = document.getElementById('correctAge')
+const ageDiffDisplay = document.getElementById('ageDiff')
+const feedbackMessage = document.getElementById('feedbackMessage')
 
 // Game state variables
 let currentRound = 1
 const numberOfRounds = 10
-let correctAge
+let correctAge = 0
 let totalError = 0
+let usedIndices = []
 
-// Initialize the game on page load
+// Load first image and round info
 window.addEventListener('load', () => {
-    currentRoundNum.innerText = currentRound
-    totalRoundNum.innerText = numberOfRounds
+    currentRoundNum.textContent = currentRound
+    totalRoundNum.textContent = numberOfRounds
     getRandomImage()
 })
 
-// Update age display on slider change
+// Update slider value display
 slider.addEventListener('input', (e) => {
-    age.innerText = e.target.value
+    age.textContent = e.target.value
 })
 
-// Fetch a random image and update correctAge
+// Pick a random image without repeating
 function getRandomImage() {
-    const randomIndex = Math.floor(Math.random() * images.length)
+    if (usedIndices.length >= images.length) usedIndices = []
+
+    let randomIndex
+    do {
+        randomIndex = Math.floor(Math.random() * images.length)
+    } while (usedIndices.includes(randomIndex))
+
+    usedIndices.push(randomIndex)
     const selected = images[randomIndex]
-    correctAge = selected.age
+
     mainImage.src = selected.image
+    correctAge = selected.age
 }
 
-// Show result pop-up with guessed and actual age
+// Show result popup
 function showPopup(guessed, correct) {
-    document.getElementById('guessedAge').innerText = guessed
-    document.getElementById('correctAge').innerText = correct
-    document.getElementById('ageDiff').innerText = Math.abs(guessed - correct)
+    guessedDisplay.textContent = guessed
+    correctDisplay.textContent = correct
+    ageDiffDisplay.textContent = Math.abs(guessed - correct)
     popup.classList.remove('hidden')
 }
 
-// Proceed to the next round or finish the game
+// Go to next round or finish
 function nextRound() {
     const guessed = parseInt(slider.value)
-
-    offYears.innerText = calculateAverageError(guessed, correctAge).toFixed(2)
+    offYears.textContent = calculateAverageError(guessed, correctAge).toFixed(2)
 
     if (currentRound < numberOfRounds) {
         currentRound++
-        currentRoundNum.innerText = currentRound
+        currentRoundNum.textContent = currentRound
         getRandomImage()
     } else {
         finishGame()
     }
 }
 
-// Final results and feedback display
+// Finish the game and show results
 function finishGame() {
     box.classList.add('hidden')
     finishedWindow.classList.remove('hidden')
-    averageError.innerText = calculateAverageError().toFixed(2)
+    averageError.textContent = calculateAverageError().toFixed(2)
 
     const average = (totalError / numberOfRounds).toFixed(1)
     let feedback = ''
 
     if (average <= 2) {
-        feedback = '"Aad baad u fiicantay! Si fiican ayaad u qiyaastay 🤩."'
+        feedback = '"Aad bay u fiicantay! Si fiican ayaad u qiyaastay 🤩."'
     } else if (average <= 5) {
         feedback = '"Qiyaas fiican! Waad dhawday 🙂."'
     } else {
         feedback =
-            '"Waad isku dayday, laakiin waxaad u baahan tahay muraayado 🤓."'
+            '"Waxaad isku dayday, laakiin waxay u baahan tahay muraayado 🤓."'
     }
 
-    document.getElementById('feedbackMessage').innerText = feedback
+    feedbackMessage.textContent = feedback
 }
 
-// Calculate average error (can update running total or just return final avg)
+// Track and calculate average error
 function calculateAverageError(guessed, correct) {
     if (guessed !== undefined && correct !== undefined) {
         const error = Math.abs(guessed - correct)
@@ -92,18 +104,30 @@ function calculateAverageError(guessed, correct) {
     return totalError / numberOfRounds
 }
 
-// Event: Show result pop-up
-resultBtn.addEventListener('click', () => {
-    showPopup(parseInt(slider.value), correctAge)
-})
+// Reset the entire game
+function resetGame() {
+    currentRound = 1
+    totalError = 0
+    usedIndices = []
 
-// Event: Continue to next round
+    slider.value = 50
+    age.textContent = 50
+    offYears.textContent = ''
+    averageError.textContent = ''
+    currentRoundNum.textContent = currentRound
+    totalRoundNum.textContent = numberOfRounds
+
+    popup.classList.add('hidden')
+    finishedWindow.classList.add('hidden')
+    box.classList.remove('hidden')
+
+    getRandomImage()
+}
+
+// Event listeners
+resultBtn.addEventListener('click', () => showPopup(slider.value, correctAge))
 popupOkButton.addEventListener('click', () => {
     nextRound()
     popup.classList.add('hidden')
 })
-
-// Event: Restart the game
-restartBtn.addEventListener('click', () => {
-    window.location.reload()
-})
+restartBtn.addEventListener('click', resetGame)
