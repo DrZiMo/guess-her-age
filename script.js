@@ -77,7 +77,7 @@ function finishGame() {
         feedback = '"Qiyaas fiican! Waad dhawday 🙂."'
     } else {
         feedback =
-            '"Waad isku dayday, laakiin waxay u baahan tahay muraayado 🤓."'
+            '"Waad isku dayday, laakiin waxaad u baahan tahay muraayado 🤓."'
     }
 
     document.getElementById('feedbackMessage').innerText = feedback
