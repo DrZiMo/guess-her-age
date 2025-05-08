@@ -19,7 +19,7 @@ const feedbackMessage = document.getElementById('feedbackMessage')
 
 // Game state variables
 let currentRound = 1
-const numberOfRounds = 10
+const numberOfRounds = 30
 let correctAge = 0
 let totalError = 0
 let usedIndices = []
@@ -48,7 +48,7 @@ function getRandomImage() {
     usedIndices.push(randomIndex)
     const selected = images[randomIndex]
 
-    mainImage.src = selected.image
+    mainImage.src = 'assets/' + selected.image + '.jpg'
     correctAge = selected.age
 }
 
@@ -84,12 +84,12 @@ function finishGame() {
     let feedback = ''
 
     if (average <= 2) {
-        feedback = '"Aad bay u fiicantay! Si fiican ayaad u qiyaastay 🤩."'
+        feedback = '"Aad baad u fiicantay! Si fiican ayaad u qiyaastay 🤩."'
     } else if (average <= 5) {
         feedback = '"Qiyaas fiican! Waad dhawday 🙂."'
     } else {
         feedback =
-            '"Waxaad isku dayday, laakiin waxay u baahan tahay muraayado 🤓."'
+            '"Waxaad isku dayday, laakiin waxad u baahan tahay muraayado 🤓."'
     }
 
     feedbackMessage.textContent = feedback
